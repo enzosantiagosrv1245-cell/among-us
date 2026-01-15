@@ -1,4 +1,6 @@
 // client/src/services/SocketService.ts
+const SOCKET_SERVER = import.meta.env.VITE_SOCKET_SERVER || 'http://localhost:3001';
+
 import { io, Socket } from 'socket.io-client';
 import { ClientEvents, ServerEvents } from '@shared/events';
 import {
