@@ -1,0 +1,57 @@
+// client/src/components/Game/TaskBar.scss
+@import '../../styles/variables';
+
+.task-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  &__label {
+    font-size: 12px;
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+  }
+  
+  &__container {
+    position: relative;
+    width: 300px;
+  }
+  
+  &__background {
+    position: relative;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  &__fill {
+    height: 100%;
+    background: linear-gradient(90deg, $accent-green, lighten($accent-green, 20%));
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba($accent-green, 0.5);
+    transition: width 0.5s ease;
+  }
+  
+  &__segment {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+}

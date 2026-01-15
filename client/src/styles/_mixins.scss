@@ -1,0 +1,101 @@
+// client/src/styles/_mixins.scss
+@import './variables';
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 35px;
+  font-family: 'Among Us', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: $border-radius-lg;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: $shadow-md;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: $shadow-lg;
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(-1px);
+  }
+}
+
+@mixin button-variant($bg-color, $hover-color) {
+  background: $bg-color;
+  color: white;
+  border: 3px solid darken($bg-color, 15%);
+  
+  &:hover:not(:disabled) {
+    background: $hover-color;
+  }
+}
+
+@mixin input-base {
+  width: 100%;
+  padding: 15px 20px;
+  font-family: 'Among Us', sans-serif;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: $border-radius-md;
+  color: $text-primary;
+  outline: none;
+  transition: all $transition-fast;
+  
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+@mixin panel-base {
+  background: linear-gradient(145deg, $bg-secondary, $bg-tertiary);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+}
+
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl) { @content; }
+  }
+}
+
+@mixin center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin text-shadow-glow($color) {
+  text-shadow: 
+    0 0 10px $color,
+    0 0 20px $color,
+    0 0 30px $color;
+}

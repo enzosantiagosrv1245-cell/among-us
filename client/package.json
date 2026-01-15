@@ -1,0 +1,30 @@
+
+{
+  "name": "among-us-client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "phaser": "^3.70.0",
+    "socket.io-client": "^4.7.2",
+    "howler": "^2.2.4",
+    "zustand": "^4.4.7",
+    "framer-motion": "^10.16.16",
+    "peerjs": "^1.5.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@types/howler": "^2.2.11",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "sass": "^1.69.5"
+  }
+}

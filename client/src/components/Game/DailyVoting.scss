@@ -1,0 +1,278 @@
+// client/src/components/Game/DailyVoting.scss
+@import '../../styles/variables';
+
+.daily-voting {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+  }
+  
+  &__container {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    background: linear-gradient(145deg, $bg-secondary, $bg-tertiary);
+    border-radius: $border-radius-xl;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+  
+  &__header {
+    text-align: center;
+    margin-bottom: 25px;
+    
+    h1 {
+      font-size: 36px;
+      color: $accent-cyan;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-bottom: 5px;
+    }
+    
+    h2 {
+      font-size: 24px;
+      color: $accent-yellow;
+      margin-bottom: 15px;
+    }
+  }
+  
+  &__instruction {
+    font-size: 18px;
+    color: $text-secondary;
+    
+    strong {
+      color: $accent-cyan;
+    }
+  }
+  
+  &__timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: $border-radius-lg;
+    font-size: 28px;
+    
+    &--warning {
+      background: rgba($accent-red, 0.3);
+      animation: pulse 0.5s ease-in-out infinite;
+      
+      .daily-voting__timer-value {
+        color: $accent-red;
+      }
+    }
+  }
+  
+  &__timer-icon {
+    font-size: 24px;
+  }
+  
+  &__timer-value {
+    font-family: 'Among Us', monospace;
+    color: white;
+    font-weight: bold;
+  }
+  
+  &__selected-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    font-size: 16px;
+    color: $text-secondary;
+  }
+  
+  &__vote-dots {
+    display: flex;
+    gap: 10px;
+  }
+  
+  &__vote-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    
+    &--filled {
+      border-color: transparent;
+      box-shadow: 0 0 10px currentColor;
+    }
+  }
+  
+  &__players {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  &__player {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $border-radius-lg;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover:not(&--self) {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    &--selected {
+      border-color: $accent-cyan;
+      background: rgba($accent-cyan, 0.1);
+      
+      .daily-voting__player-avatar {
+        box-shadow: 0 0 20px currentColor;
+      }
+    }
+    
+    &--self {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  &__order-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    background: $accent-cyan;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  &__player-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid;
+    overflow: hidden;
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  &__player-name {
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  &__you-badge {
+    font-size: 10px;
+    background: $accent-yellow;
+    color: #000;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  &__player-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: 0 0 $border-radius-lg $border-radius-lg;
+    transition: background-color 0.3s ease;
+  }
+  
+  &__submit {
+    width: 100%;
+    padding: 18px;
+    font-size: 20px;
+    font-family: 'Among Us', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: $border-radius-lg;
+    color: $text-muted;
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+    
+    &--ready {
+      background: $accent-cyan;
+      border-color: $accent-cyan;
+      color: #000;
+      cursor: pointer;
+      box-shadow: 0 0 30px rgba($accent-cyan, 0.5);
+      
+      &:hover {
+        background: lighten($accent-cyan, 10%);
+      }
+    }
+    
+    &:disabled {
+      opacity: 0.7;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .daily-voting {
+    &__container {
+      padding: 20px;
+    }
+    
+    &__header h1 {
+      font-size: 28px;
+    }
+    
+    &__players {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    
+    &__player-avatar {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}

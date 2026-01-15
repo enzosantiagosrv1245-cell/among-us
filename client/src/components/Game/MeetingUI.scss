@@ -1,0 +1,345 @@
+// client/src/components/Game/MeetingUI.scss
+@import '../../styles/variables';
+
+.meeting-ui {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/assets/ui/meeting-bg.png') center/cover;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+  
+  &__container {
+    position: relative;
+    width: 95%;
+    max-width: 1200px;
+    max-height: 90vh;
+    background: linear-gradient(145deg, rgba($bg-secondary, 0.95), rgba($bg-tertiary, 0.95));
+    border-radius: $border-radius-xl;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    
+    h1 {
+      font-size: 28px;
+      color: $accent-red;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+    }
+  }
+  
+  &__timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 25px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: $border-radius-md;
+    
+    span:first-child {
+      font-size: 12px;
+      color: $text-muted;
+      text-transform: uppercase;
+    }
+    
+    &--warning {
+      background: rgba($accent-red, 0.3);
+      animation: pulse 0.5s ease-in-out infinite;
+      
+      .meeting-ui__timer-value {
+        color: $accent-red;
+      }
+    }
+  }
+  
+  &__timer-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  &__content {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  &__voting-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+  }
+  
+  &__players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+  }
+  
+  &__player-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $border-radius-lg;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    
+    &:hover:not(&--self) {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    &--selected {
+      border-color: $accent-green;
+      background: rgba($accent-green, 0.2);
+    }
+    
+    &--self {
+      opacity: 0.6;
+      cursor: default;
+    }
+  }
+  
+  &__player-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 4px solid;
+    overflow: hidden;
+    margin-bottom: 10px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  &__player-name {
+    font-size: 14px;
+    color: white;
+    text-align: center;
+  }
+  
+  &__self-badge {
+    font-size: 10px;
+    background: $accent-yellow;
+    color: #000;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+  &__votes-received {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 3px;
+  }
+  
+  &__vote-pip {
+    width: 8px;
+    height: 8px;
+    background: $accent-green;
+    border-radius: 50%;
+  }
+  
+  &__skip-card {
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  &__skip-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: $text-muted;
+    margin-bottom: 10px;
+  }
+  
+  &__dead-section {
+    padding-top: 15px;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    
+    h3 {
+      font-size: 14px;
+      color: $text-muted;
+      margin-bottom: 10px;
+    }
+  }
+  
+  &__dead-players {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  &__dead-player {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: $border-radius-sm;
+    opacity: 0.5;
+    
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      filter: grayscale(100%);
+    }
+    
+    span {
+      font-size: 12px;
+      color: $text-muted;
+      text-decoration: line-through;
+    }
+  }
+  
+  &__chat-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    min-width: 300px;
+  }
+  
+  &__chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  &__message {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $border-radius-sm;
+    
+    &--self {
+      background: rgba($accent-cyan, 0.1);
+    }
+  }
+  
+  &__message-sender {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  &__message-content {
+    color: $text-primary;
+  }
+  
+  &__chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    
+    input {
+      flex: 1;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: $border-radius-md 0 0 $border-radius-md;
+      color: white;
+      font-size: 14px;
+      outline: none;
+      
+      &::placeholder {
+        color: $text-muted;
+      }
+      
+      &:focus {
+        border-color: $accent-cyan;
+      }
+    }
+    
+    button {
+      padding: 12px 20px;
+      background: $accent-cyan;
+      border: none;
+      border-radius: 0 $border-radius-md $border-radius-md 0;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      
+      &:hover {
+        background: lighten($accent-cyan, 10%);
+      }
+    }
+  }
+  
+  &__voted-status {
+    padding: 15px;
+    background: rgba($accent-green, 0.2);
+    text-align: center;
+    font-size: 16px;
+    color: $accent-green;
+    border-top: 2px solid rgba($accent-green, 0.3);
+  }
+}
+
+// Responsive
+@media (max-width: 900px) {
+  .meeting-ui {
+    &__content {
+      flex-direction: column;
+    }
+    
+    &__chat-section {
+      min-width: auto;
+      max-height: 200px;
+    }
+  }
+}

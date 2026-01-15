@@ -1,0 +1,156 @@
+// client/src/components/Lobby/SettingsPanel.scss
+@import '../../styles/variables';
+
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+  &__section {
+    &-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: $accent-cyan;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid rgba($accent-cyan, 0.3);
+    }
+  }
+  
+  &__maps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  
+  &__map-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: $border-radius-sm;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    
+    span {
+      font-size: 11px;
+      color: $text-secondary;
+    }
+    
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &--active {
+      border-color: $accent-cyan;
+      background: rgba($accent-cyan, 0.1);
+      
+      span {
+        color: $accent-cyan;
+      }
+    }
+  }
+  
+  &__option {
+    margin-bottom: 15px;
+    
+    label {
+      display: block;
+      font-size: 13px;
+      color: $text-secondary;
+      margin-bottom: 8px;
+    }
+  }
+  
+  &__slider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    
+    input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: $accent-cyan;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.2s;
+        
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+    
+    span {
+      min-width: 60px;
+      text-align: right;
+      font-size: 14px;
+      color: $text-primary;
+    }
+  }
+  
+  &__toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+// client/src/components/Lobby/SettingsPanel.scss (continuação)
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    label {
+      font-size: 13px;
+      color: $text-secondary;
+    }
+  }
+}
+
+.toggle-btn {
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: $border-radius-sm;
+  color: $text-muted;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  &--on {
+    background: rgba($accent-green, 0.3);
+    border-color: $accent-green;
+    color: $accent-green;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .settings-panel {
+    &__maps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

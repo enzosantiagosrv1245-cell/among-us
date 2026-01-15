@@ -1,0 +1,169 @@
+// client/src/components/Game/ActionButtons.scss
+@import '../../styles/variables';
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.action-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.4;
+  filter: grayscale(100%);
+  
+  &--active {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+  
+  &__icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  &__label {
+    margin-top: 8px;
+    font-family: 'Among Us', sans-serif;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  &__key {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  &__cooldown {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+      
+      circle {
+        fill: none;
+        stroke: rgba(0, 0, 0, 0.7);
+        stroke-width: 10;
+        stroke-dasharray: 283;
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset 0.1s linear;
+      }
+    }
+  }
+  
+  // Button variants
+  &--kill {
+    .action-btn__icon {
+      border: 4px solid $accent-red;
+    }
+    
+    &.action-btn--active {
+      .action-btn__icon {
+        box-shadow: 0 0 20px rgba($accent-red, 0.6);
+      }
+    }
+  }
+  
+  &--report {
+    .action-btn__icon {
+      border: 4px solid $accent-yellow;
+    }
+    
+    &.action-btn--active {
+      .action-btn__icon {
+        box-shadow: 0 0 20px rgba($accent-yellow, 0.6);
+      }
+    }
+  }
+  
+  &--use {
+    .action-btn__icon {
+      border: 4px solid $accent-cyan;
+    }
+    
+    &.action-btn--active {
+      .action-btn__icon {
+        box-shadow: 0 0 20px rgba($accent-cyan, 0.6);
+      }
+    }
+  }
+  
+  &--vent {
+    .action-btn__icon {
+      border: 4px solid $accent-purple;
+    }
+    
+    &.action-btn--active {
+      .action-btn__icon {
+        box-shadow: 0 0 20px rgba($accent-purple, 0.6);
+      }
+    }
+  }
+  
+  &--sabotage {
+    .action-btn__icon {
+      border: 4px solid $accent-orange;
+      box-shadow: 0 0 20px rgba($accent-orange, 0.6);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .action-btn {
+    &__icon {
+      width: 60px;
+      height: 60px;
+    }
+    
+    &__label {
+      font-size: 10px;
+    }
+    
+    &__key {
+      display: none;
+    }
+  }
+}

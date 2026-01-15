@@ -1,0 +1,152 @@
+
+@import './variables';
+@import './mixins';
+@import './animations';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root, .app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Among Us', 'Comic Sans MS', cursive, sans-serif;
+  background: $bg-primary;
+  color: $text-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  position: relative;
+}
+
+// Button styles
+.btn {
+  @include button-base;
+  
+  &--primary {
+    @include button-variant($accent-red, darken($accent-red, 10%));
+  }
+  
+  &--secondary {
+    @include button-variant($accent-blue, darken($accent-blue, 10%));
+  }
+  
+  &--success {
+    @include button-variant($accent-green, darken($accent-green, 10%));
+  }
+  
+  &--warning {
+    @include button-variant($accent-yellow, darken($accent-yellow, 10%));
+  }
+  
+  &--ghost {
+    background: transparent;
+    border: 3px solid $text-primary;
+    color: $text-primary;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  &--large {
+    padding: 20px 50px;
+    font-size: 24px;
+  }
+  
+  &--small {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// Input styles
+.input {
+  @include input-base;
+  
+  &:focus {
+    border-color: $accent-blue;
+    box-shadow: 0 0 0 3px rgba($accent-blue, 0.3);
+  }
+  
+  &--error {
+    border-color: $accent-red;
+  }
+}
+
+// Panel styles
+.panel {
+  @include panel-base;
+  
+  &__header {
+    padding: 15px 20px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  &__content {
+    padding: 20px;
+  }
+}
+
+// Scrollbar styles
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+// Utility classes
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.flex { display: flex; }
+.flex-center { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-sm { gap: 10px; }
+.gap-md { gap: 20px; }
+.gap-lg { gap: 30px; }
+
+.mt-sm { margin-top: 10px; }
+.mt-md { margin-top: 20px; }
+.mt-lg { margin-top: 30px; }
+.mb-sm { margin-bottom: 10px; }
+.mb-md { margin-bottom: 20px; }
+.mb-lg { margin-bottom: 30px; }
+
+.full-width { width: 100%; }
+.full-height { height: 100%; }

@@ -1,0 +1,94 @@
+// client/src/components/Lobby/PlayerList.scss
+@import '../../styles/variables';
+
+.player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $border-radius-md;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &--self {
+      border-color: $accent-cyan;
+      background: rgba($accent-cyan, 0.1);
+    }
+    
+    &--empty {
+      opacity: 0.4;
+      border-style: dashed;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+  
+  &__avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 3px solid white;
+    
+    &--empty {
+      background-image: url('/assets/ui/avatar-placeholder.png');
+      opacity: 0.3;
+    }
+  }
+  
+  &__info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  &__name {
+    font-size: 16px;
+    font-weight: bold;
+    
+    &--empty {
+      font-weight: normal;
+      font-style: italic;
+      color: $text-muted;
+    }
+  }
+  
+  &__badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    &--host {
+      background: $accent-yellow;
+      color: #000;
+    }
+    
+    &--you {
+      background: $accent-cyan;
+      color: #000;
+    }
+  }
+  
+  &__color-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+}

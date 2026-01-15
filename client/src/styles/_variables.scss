@@ -1,0 +1,72 @@
+// client/src/styles/_variables.scss
+// Colors
+$bg-primary: #0a0a0f;
+$bg-secondary: #1a1a2e;
+$bg-tertiary: #16213e;
+
+$text-primary: #ffffff;
+$text-secondary: #a0a0a0;
+$text-muted: #666666;
+
+$accent-red: #c51111;
+$accent-blue: #132ed1;
+$accent-green: #117f2d;
+$accent-yellow: #f5f557;
+$accent-pink: #ed54ba;
+$accent-orange: #ef7d0d;
+$accent-purple: #6b2fbb;
+$accent-cyan: #38fedc;
+
+// Player colors
+$player-colors: (
+  'red': #c51111,
+  'blue': #132ed1,
+  'green': #117f2d,
+  'pink': #ed54ba,
+  'orange': #ef7d0d,
+  'yellow': #f5f557,
+  'black': #3f474e,
+  'white': #d6e0f0,
+  'purple': #6b2fbb,
+  'brown': #71491e,
+  'cyan': #38fedc,
+  'lime': #50ef39,
+  'maroon': #6b2c2c,
+  'rose': #ecc0d3,
+  'banana': #fffebe,
+  'gray': #708496,
+  'tan': #928776,
+  'coral': #ec7578
+);
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+$shadow-glow: 0 0 20px rgba(255, 255, 255, 0.2);
+
+// Borders
+$border-radius-sm: 5px;
+$border-radius-md: 10px;
+$border-radius-lg: 20px;
+$border-radius-xl: 30px;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Z-index layers
+$z-background: 0;
+$z-game: 10;
+$z-ui: 100;
+$z-modal: 200;
+$z-overlay: 300;
+$z-tooltip: 400;
+$z-notification: 500;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

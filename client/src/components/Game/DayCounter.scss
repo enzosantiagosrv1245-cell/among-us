@@ -1,0 +1,63 @@
+// client/src/components/Game/DayCounter.scss
+@import '../../styles/variables';
+
+.day-counter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(145deg, rgba($bg-secondary, 0.9), rgba($bg-tertiary, 0.9));
+  border-radius: $border-radius-lg;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  
+  &__icon {
+    font-size: 24px;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__label {
+    font-size: 10px;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  &__value {
+    font-size: 24px;
+    font-weight: bold;
+    color: $accent-yellow;
+    display: flex;
+    align-items: baseline;
+  }
+  
+  &__separator {
+    margin: 0 4px;
+    color: $text-muted;
+    font-size: 18px;
+  }
+  
+  &__total {
+    color: $text-secondary;
+    font-size: 18px;
+  }
+  
+  &__progress {
+    width: 60px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-left: 10px;
+  }
+  
+  &__progress-fill {
+    height: 100%;
+    background: $accent-yellow;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+}

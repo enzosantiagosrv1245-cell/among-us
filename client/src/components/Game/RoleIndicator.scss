@@ -1,0 +1,41 @@
+// client/src/components/Game/RoleIndicator.scss
+@import '../../styles/variables';
+
+.role-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: $border-radius-lg;
+  border: 2px solid;
+
+  &--impostor {
+    border-color: $accent-red;
+    background: rgba($accent-red, 0.1);
+  }
+
+  &--crewmate {
+    border-color: $accent-cyan;
+    background: rgba($accent-cyan, 0.1);
+  }
+
+  &__icon {
+    font-size: 20px;
+  }
+
+  &__text {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &--impostor &__text {
+    color: $accent-red;
+  }
+
+  &--crewmate &__text {
+    color: $accent-cyan;
+  }
+}
