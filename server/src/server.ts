@@ -4,22 +4,31 @@ import { createServer } from 'http';
 import { Server as SocketIOServer } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app: Express = express();
 const httpServer = createServer(app);
 const io = new SocketIOServer(httpServer, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: process.env.CLIENT_URL || '*',
     methods: ['GET', 'POST']
-  }
+  },
+  transports: ['websocket', 'polling'] // Adicionar polling como fallback
 });
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// IMPORTANTE: Servir arquivos estáticos do client/dist
+const clientDistPath = path.join(__dirname, '../../client/dist');
+app.use(express.static(clientDistPath));
 
 // Store rooms and players
 interface Room {
@@ -211,10 +220,16 @@ function getDefaultSettings() {
   };
 }
 
+// IMPORTANTE: Servir o index.html para todas as rotas não-API (SPA)
+app.get('*', (req: Request, res: Response) => {
+  res.sendFile(path.join(clientDistPath, 'index.html'));
+});
+
 // Start server
-const PORT = process.env.PORT || 3001;
-httpServer.listen(PORT, () => {
-  console.log(`\n🎮 Servidor Among Us rodando em porta ${PORT}\n`);
+const PORT = parseInt(process.env.PORT || '3001', 10);
+httpServer.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n🎮 Servidor Among Us rodando em porta ${PORT}`);
+  console.log(`📂 Servindo arquivos de: ${clientDistPath}\n`);
 });
 
 export default httpServer;
