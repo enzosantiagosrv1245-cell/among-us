@@ -32,19 +32,19 @@ body {
   @include button-base;
   
   &--primary {
-    @include button-variant($accent-red, darken($accent-red, 10%));
+    @include button-variant($accent-red, mix(black, $accent-red, 10%));
   }
   
   &--secondary {
-    @include button-variant($accent-blue, darken($accent-blue, 10%));
+    @include button-variant($accent-blue, mix(black, $accent-blue, 10%));
   }
   
   &--success {
-    @include button-variant($accent-green, darken($accent-green, 10%));
+    @include button-variant($accent-green, mix(black, $accent-green, 10%));
   }
   
   &--warning {
-    @include button-variant($accent-yellow, darken($accent-yellow, 10%));
+    @include button-variant($accent-yellow, mix(black, $accent-yellow, 10%));
   }
   
   &--ghost {

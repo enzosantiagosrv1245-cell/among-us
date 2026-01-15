@@ -133,7 +133,7 @@
     letter-spacing: 2px;
 
     &:hover {
-      background: lighten($accent-cyan, 10%);
+      background: mix(white, $accent-cyan, 10%);
       box-shadow: 0 0 20px rgba($accent-cyan, 0.5);
       transform: scale(1.05);
     }

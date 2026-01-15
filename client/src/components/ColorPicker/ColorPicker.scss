@@ -1,0 +1,44 @@
+.color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+
+  .color-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover:not(.disabled) {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    &.selected {
+      border-color: white;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      
+      &::after {
+        content: '✕';
+        color: rgba(255, 0, 0, 0.8);
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -30,7 +30,7 @@
 @mixin button-variant($bg-color, $hover-color) {
   background: $bg-color;
   color: white;
-  border: 3px solid darken($bg-color, 15%);
+  border: 3px solid mix(black, $bg-color, 15%);
   
   &:hover:not(:disabled) {
     background: $hover-color;

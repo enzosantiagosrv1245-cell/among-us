@@ -315,7 +315,7 @@
       transition: background 0.2s;
       
       &:hover {
-        background: lighten($accent-cyan, 10%);
+        background: mix(white, $accent-cyan, 10%);
       }
     }
   }

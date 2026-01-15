@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
+  root: __dirname,
   plugins: [react()],
   resolve: {
     alias: {
@@ -24,6 +25,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: true
+    sourcemap: false,
+    minify: false
   }
 });
